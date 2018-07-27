@@ -1,5 +1,3 @@
-import pytest
-
 from dictfilter import query
 
 
@@ -28,7 +26,7 @@ def test_many_flat_query():
 
     expected = [{'a': 1, 'c': 'testing'}, {'a': 5, 'c': 'another'}]
 
-    assert query(unfiltered, ['a', 'c'], many=True) == expected
+    assert query(unfiltered, ['a', 'c']) == expected
 
 
 def test_single_full_nested_query():
@@ -103,7 +101,7 @@ def test_many_full_nested_query():
         'c': 'another',
     }]
 
-    assert query(unfiltered, ['b', 'c'], many=True) == expected
+    assert query(unfiltered, ['b', 'c']) == expected
 
 
 def test_many_select_nested_query():
@@ -135,7 +133,7 @@ def test_many_select_nested_query():
         'c': 'another',
     }]
 
-    assert query(unfiltered, ['b.nest', 'c'], many=True) == expected
+    assert query(unfiltered, ['b.nest', 'c']) == expected
 
 
 def test_single_multi_nested_query():
@@ -190,7 +188,7 @@ def test_many_multi_nested_query():
         'c': 'another',
     }]
 
-    assert query(unfiltered, ['b.nest', 'b.other', 'c'], many=True) == expected
+    assert query(unfiltered, ['b.nest', 'b.other', 'c']) == expected
 
 
 def test_single_multi_nested_list_query():
@@ -263,14 +261,16 @@ def test_many_multi_nested_list_query():
         'c': 'another',
     }]
 
-    assert query(unfiltered, ['b.nest', 'b.other', 'c'], many=True) == expected
+    assert query(unfiltered, ['b.nest', 'b.other', 'c']) == expected
 
 
-def test_query_dict_with_many_true():
-    with pytest.raises(AssertionError):
-        query({}, [], many=True)
+def test_non_existent_fields_query():
+    unfiltered = {
+        'a': 1,
+        'b': True,
+        'c': 'testing',
+    }
 
+    expected = {'a': 1, 'c': 'testing'}
 
-def test_query_list_with_many_false():
-    with pytest.raises(AssertionError):
-        query([], [])
+    assert query(unfiltered, ['a', 'c', 'd']) == expected
