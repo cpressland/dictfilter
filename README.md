@@ -1,5 +1,7 @@
 # dictfilter
 
+[![pipeline status](https://git.bink.com/libs/dictfilter/badges/master/pipeline.svg)](https://git.bink.com/libs/dictfilter/commits/master) [![coverage report](https://git.bink.com/libs/dictfilter/badges/master/coverage.svg)](https://git.bink.com/libs/dictfilter/commits/master)
+
 ## installation
 
 ```shell
