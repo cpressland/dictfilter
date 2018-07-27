@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='dictfilter',
-    version='1.0.0',
+    version='1.1.1',
     author='Chris Latham',
     author_email='backwardspy@gmail.com',
     description='Filter dictionaries based on a list of field names.',

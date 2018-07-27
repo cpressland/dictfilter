@@ -20,7 +20,7 @@ bsg = {
     }
 }
 
-result = query(some_data, ['class', 'name', 'crew.captain'])
+result = query(some_data, ['class', 'name', 'crew.commander'])
 
 # {
 #     'class': 'Battlestar',
