@@ -30,3 +30,16 @@ result = query(some_data, ['class', 'name', 'crew.captain'])
 #     }
 # }
 ```
+
+## django integration
+
+Register the dictfilter middleware in `settings.py`:
+
+```python
+MIDDLEWARE = [
+    ...
+    'dictfilter.django.middleware.dictfilter_middleware',
+]
+```
+
+By default, every 2xx series response will be filtered based on a comma-separated `fields` parameter in the query string.

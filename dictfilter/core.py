@@ -4,9 +4,13 @@ def _filter(data, fields):
     for field in fields:
         key, *rest = field.split('.')
 
+        if key not in data:
+            # TODO: maybe add a 'strict' option to raise an exception here.
+            continue
+
         if rest:
             many = isinstance(data[key], list)
-            sub_element = query(data[key], rest, many=many)
+            sub_element = query(data[key], rest)
 
             existing_element = out.get(key, [] if many else {})
             if many and existing_element:
@@ -22,14 +26,8 @@ def _filter(data, fields):
     return out
 
 
-def query(data, fields, *, many=False):
-    if isinstance(data, list) and many is False:
-        raise AssertionError(
-            'if querying a list is desired, then you must pass many=True!')
-    elif isinstance(data, dict) and many is True:
-        raise AssertionError(
-            'if querying a dict is desired, then you must not pass many=True!')
-
+def query(data, fields):
+    many = isinstance(data, list)
     if many:
         return [_filter(d, fields) for d in data]
     else:
