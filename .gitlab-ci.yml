@@ -1,0 +1,23 @@
+stages:
+  - tests
+
+tests:
+  stage: tests
+  script:
+    - pipenv install --system --deploy
+    - pytest --cov-report term-missing --cov=dictfilter
+
+complexity:
+  stage: tests
+  script:
+    - xenon --max-average A --max-modules B --max-absolute B .
+
+style:
+  stage: tests
+  script:
+    - flake8
+
+type-check:
+  stage: tests
+  script:
+    - mypy --ignore-missing-imports dictfilter
