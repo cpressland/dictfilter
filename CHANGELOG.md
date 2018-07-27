@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.2
+
+* Improved documentation
+* Improved test coverage
+
 ## 1.1.1
 
 * Fixed a typo in the documentation
