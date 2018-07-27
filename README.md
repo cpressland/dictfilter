@@ -9,11 +9,24 @@ pip install dictfilter
 ## usage
 
 ```python
-some_data = {
-    'name': 'Galactica',
+bsg = {
     'class': 'Battlestar',
     'model': 'Jupiter',
+    'name': 'Galactica',
+    'crew': {
+        'commander': 'William Adama',
+        'xo': 'Saul Tigh',
+        'cag': 'Kara Thrace',
+    }
 }
 
-result = query(some_data, ['name', 'class'])
+result = query(some_data, ['class', 'name', 'crew.captain'])
+
+# {
+#     'class': 'Battlestar',
+#     'name': 'Galactica',
+#     'crew': {
+#         'commander': 'William Adama',
+#     }
+# }
 ```
