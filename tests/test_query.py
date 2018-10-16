@@ -274,3 +274,22 @@ def test_non_existent_fields_query():
     expected = {'a': 1, 'c': 'testing'}
 
     assert query(unfiltered, ['a', 'c', 'd']) == expected
+
+
+def test_deep_nested_query():
+    unfiltered = {
+        'a': {
+            'b': {
+                'c': {
+                    'value': 5,
+                    'another': 6
+                },
+                'irrelevant_c': 10,
+            },
+            'irrelevant_b': 10,
+        },
+        'irrelevant_a': 10,
+    }
+
+    expected = {'a': {'b': {'c': {'value': 5}}}}
+    assert query(unfiltered, ['a.b.c.value']) == expected
