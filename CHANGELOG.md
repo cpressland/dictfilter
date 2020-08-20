@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.1
+
+* Updated project for release on GitHub
+
 ## 1.2
 
 * Fixed a bug when filtering nested dictionaries more than 1 level deep
