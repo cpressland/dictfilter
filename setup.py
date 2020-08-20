@@ -7,11 +7,11 @@ setuptools.setup(
     name='dictfilter',
     version='1.2',
     author='Chris Latham',
-    author_email='backwardspy@gmail.com',
+    author_email='cl@bink.com',
     description='Filter dictionaries based on a list of field names.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://git.bink.com/libs/dictfilter',
+    url='https://github.com/binkhq/dictfilter',
     packages=setuptools.find_packages(),
     classifiers=(
         'Programming Language :: Python :: 3',
