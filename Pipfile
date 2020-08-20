@@ -6,15 +6,11 @@ name = "pypi"
 [packages]
 
 [dev-packages]
-jedi = "*"
-importmagic = "*"
-"autopep8" = "*"
-yapf = "*"
 "flake8" = "*"
 pytest = "*"
 pytest-cov = "*"
-xenon = "*"
 mypy = "*"
+black = "==19.10b0"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
