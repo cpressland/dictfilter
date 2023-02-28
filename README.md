@@ -9,6 +9,8 @@ pip install dictfilter
 ## usage
 
 ```python
+from dictfilter import query
+
 bsg = {
     'class': 'Battlestar',
     'model': 'Jupiter',
@@ -20,7 +22,21 @@ bsg = {
     }
 }
 
-result = query(some_data, ['class', 'name', 'crew.commander'])
+result = query(bsg, ['class', 'name', 'crew.commander'])
+
+# {
+#     'class': 'Battlestar',
+#     'name': 'Galactica',
+#     'crew': {
+#         'commander': 'William Adama',
+#     }
+# }
+```
+
+The default delimiter used in field names is dot `.` however this can be changed with the `delimiter` keyword argument to query:
+
+```python
+result = query(bsg, ['class', 'name', 'crew > commander'], delimiter=' > ')
 
 # {
 #     'class': 'Battlestar',
@@ -38,7 +54,7 @@ Register the dictfilter middleware in `settings.py`:
 ```python
 MIDDLEWARE = [
     ...
-    'dictfilter.django.middleware.dictfilter_middleware',
+    'dictfilter.django.middleware.DictFilterMiddleware',
 ]
 ```
 

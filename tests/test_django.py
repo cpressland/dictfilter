@@ -21,24 +21,28 @@ class Response:
 
 def test_middleware_with_fields():
     def get_response(_):
-        return Response({
-            'a': 1,
-            'b': 'test',
-            'c': True,
-            'd': 'unwanted',
-        })
+        return Response(
+            {
+                "a": 1,
+                "b": "test",
+                "c": True,
+                "d": "unwanted",
+            }
+        )
 
     middleware = dictfilter_middleware(get_response)
 
-    request = Request(get={
-        'fields': 'a,b,c',
-    })
+    request = Request(
+        get={
+            "fields": "a,b,c",
+        }
+    )
     response = middleware(request)
 
     expected = {
-        'a': 1,
-        'b': 'test',
-        'c': True,
+        "a": 1,
+        "b": "test",
+        "c": True,
     }
 
     assert response._render_was_called
@@ -47,25 +51,29 @@ def test_middleware_with_fields():
 
 def test_middleware_with_asterisk():
     def get_response(_):
-        return Response({
-            'a': 1,
-            'b': 'test',
-            'c': True,
-            'd': 'another',
-        })
+        return Response(
+            {
+                "a": 1,
+                "b": "test",
+                "c": True,
+                "d": "another",
+            }
+        )
 
     middleware = dictfilter_middleware(get_response)
 
-    request = Request(get={
-        'fields': '*',
-    })
+    request = Request(
+        get={
+            "fields": "*",
+        }
+    )
     response = middleware(request)
 
     expected = {
-        'a': 1,
-        'b': 'test',
-        'c': True,
-        'd': 'another',
+        "a": 1,
+        "b": "test",
+        "c": True,
+        "d": "another",
     }
 
     assert not response._render_was_called
@@ -74,12 +82,14 @@ def test_middleware_with_asterisk():
 
 def test_middleware_with_no_fields():
     def get_response(_):
-        return Response({
-            'a': 1,
-            'b': 'test',
-            'c': True,
-            'd': 'another',
-        })
+        return Response(
+            {
+                "a": 1,
+                "b": "test",
+                "c": True,
+                "d": "another",
+            }
+        )
 
     middleware = dictfilter_middleware(get_response)
 
@@ -87,10 +97,10 @@ def test_middleware_with_no_fields():
     response = middleware(request)
 
     expected = {
-        'a': 1,
-        'b': 'test',
-        'c': True,
-        'd': 'another',
+        "a": 1,
+        "b": "test",
+        "c": True,
+        "d": "another",
     }
 
     assert not response._render_was_called
